@@ -22,7 +22,11 @@ class CustomerFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => $this->faker->name,
+            'phone' => $this->faker->phoneNumber,
+            'email' => $this->faker->safeEmail,
+            'photo' => $this->faker->image('storage/app/public/uploads/customers',300,300, null, false),
+            'created_at'=> $this->faker->dateTimeBetween('-10 days', now()),
         ];
     }
 }

@@ -14,7 +14,7 @@ class UpdateController extends Controller
     {
         $data = $request->validated();
         $customer->update($data);
-        return view('dashboard.customers.show', compact('customer'));
+        return view('dashboard.customer.show', compact('customer'));
     }
 
 }

@@ -12,7 +12,7 @@ class EditController extends Controller
     public function __invoke(Customer $customer)
     {
         $customers = Customer::all();
-        return view('dashboard.customers.edit', compact('customer'));
+        return view('dashboard.customer.edit', compact('customer'));
     }
 
 }

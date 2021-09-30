@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Dashboard\Customer;
+namespace App\Http\Controllers\Dashboard\Product;
 
 use App\Models\Customer;
 use Illuminate\Http\Request;
@@ -11,7 +11,7 @@ class CreateController extends Controller
 
     public function __invoke()
     {
-        return view('dashboard.customer.create');
+        return view('dashboard.product.create');
     }
 
 }

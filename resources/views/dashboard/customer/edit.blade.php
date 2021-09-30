@@ -12,8 +12,8 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{ route('dashboard.main') }}">Dashboard</a></li>
-              <li class="breadcrumb-item"><a href="{{ route('dashboard.customers.index') }}">Customers</a></li>
-              <li class="breadcrumb-item"><a href="{{ route('dashboard.customers.show', $customer->id) }}">#{{ $customer->id }}</a></li>
+              <li class="breadcrumb-item"><a href="{{ route('dashboard.customer.index') }}">Customers</a></li>
+              <li class="breadcrumb-item"><a href="{{ route('dashboard.customer.show', $customer->id) }}">#{{ $customer->id }}</a></li>
               <li class="breadcrumb-item active">Edit</li>
             </ol>
           </div>
@@ -56,18 +56,18 @@
           <div class="col-md-9">
             <div class="card">
               <div class="card-footer">
-                <a href="{{ route('dashboard.customers.show', $customer->id) }}" class="btn btn-default">
+                <a href="{{ route('dashboard.customer.show', $customer->id) }}" class="btn btn-default">
                   <i class="fas fa-eye"></i> View</a>
               </div>
             
               <div class="card-body">  
-                <form class="form-horizontal" action="{{ route('dashboard.customers.update', $customer->id) }}" method="POST" enctype="multipart/form-data">
+                <form class="form-horizontal" action="{{ route('dashboard.customer.update', $customer->id) }}" method="POST" enctype="multipart/form-data">
                   @csrf
                   @method('PATCH')
                   <div class="form-group row">
                     <label for="inputName" class="col-sm-2 col-form-label">Name</label>
                     <div class="col-sm-10">
-                      <input type="email" class="form-control @error('name') is-invalid @enderror" id="inputName" name="name"
+                      <input type="text" class="form-control @error('name') is-invalid @enderror" id="inputName" name="name"
                         value="{{ $customer->name ?? Request::get('name') ?? old('name') }}">
                         @error('name')
                           <span class="invalid-feedback" role="alert">{{ $message }}</span>

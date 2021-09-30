@@ -11,7 +11,7 @@
                 <div class="col-sm-6">
                   <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{ route('dashboard.main') }}">Dashboard</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('dashboard.customers.index') }}">Customers</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('dashboard.customer.index') }}">Customers</a></li>
                 <li class="breadcrumb-item active">New</li>
                   </ol>
                 </div><!-- /.col -->
@@ -25,7 +25,7 @@
             </div>
             <!-- /.card-header -->
             <!-- form start -->
-            <form action="{{ route('dashboard.customers.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('dashboard.customer.store') }}" method="POST" enctype="multipart/form-data">
               @csrf
               <div class="card-body">
                 <div class="form-group">

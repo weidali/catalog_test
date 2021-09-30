@@ -13,7 +13,7 @@ class DeleteController extends Controller
     public function __invoke(Customer $customer)
     {
         $customer->delete();
-        return redirect()->route('dashboard.customers.index')
+        return redirect()->route('dashboard.customer.index')
             ->with('delete',__('Customer has been deleted.'));
     }
 

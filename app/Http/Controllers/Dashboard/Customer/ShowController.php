@@ -12,7 +12,7 @@ class ShowController extends Controller
     public function __invoke(Customer $customer)
     {
         $customers = Customer::all();
-        return view('dashboard.customers.show', compact('customer'));
+        return view('dashboard.customer.show', compact('customer'));
     }
 
 }

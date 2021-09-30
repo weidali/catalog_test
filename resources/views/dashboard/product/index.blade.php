@@ -11,7 +11,7 @@
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                   <li class="breadcrumb-item"><a href="{{ route('dashboard.main') }}">Dashboard</a></li>
-                  <li class="breadcrumb-item active">Customers</li>
+                  <li class="breadcrumb-item active">Products</li>
                 </ol>
               </div><!-- /.col -->
             </div><!-- /.row -->
@@ -38,8 +38,8 @@
               @endif
               <div class="card">
                 <div class="card-header">
-                  <h3 class="card-title">Customers</h3>
-                  <a href="{{ route('dashboard.customers.create') }}" class="btn btn-primary float-right"><i class="fas fa-plus"></i> New Cusromer</a>
+                  <h3 class="card-title">Products</h3>
+                  <a href="{{ route('dashboard.product.create') }}" class="btn btn-primary float-right"><i class="fas fa-plus"></i> New Product</a>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -50,31 +50,30 @@
                           <thead>
                             <tr role="row">
                                 <th>Id</th>
-                                <th>Full Name</th>
-                                <th>Phone Number</th>
-                                <th>Email</th>
-                                <th>Photo</th>
+                                <th>Name</th>
+                                <th>SKU</th>
+                                <th>Description</th>
+                                <th>Price</th>
+                                <th>Image</th>
                                 <th>Created</th>
                                 <th>Updated</th>
                             </tr>
                           </thead>
                           <tbody>
-                            @foreach ($customers as $customer)
-                              <tr onclick="window.location='{{ route('dashboard.customers.show', [$customer->id]) }}'">
-                                <td>{{ $customer->id }}</td>
-                                <td>{{ $customer->name }}</td>
-                                <td>{{ $customer->phone }}</td>
-                                <td>{{ $customer->email }}</td>
+                            @foreach ($products as $product)
+                              <tr onclick="window.location='{{ route('dashboard.product.show', [$product->id]) }}'">
+                                <td>{{ $product->id }}</td>
+                                <td>{{ $product->name }}</td>
+                                <td>{{ $product->sku }}</td>
+                                <td>{{ $product->description }}</td>
+                                <td>{{ $product->price }}</td>
                                 <td>
-                                  @if ( $customer->photo )
-                                    <div class="user-block">
-                                      <img class="attachment-img" src="{{ asset('storage/uploads/customers/'.$customer->photo)}}" alt="{{ $customer->name }}_Ava">
-                                    </div>
-                                  @endif
-                                    
+                                  <div class="user-block">
+                                    <img class="attachment-img" src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}_img">
+                                  </div>
                                 </td>
-                                <td>{{ $customer->created_at }}</td>
-                                <td>{{ $customer->updated_at }}</td>
+                                <td>{{ $product->created_at }}</td>
+                                <td>{{ $product->updated_at }}</td>
                               </tr>    
                             @endforeach
                           </tbody>
@@ -87,7 +86,7 @@
                         <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
                           {{-- Pagination --}}
                           <div class="d-flex justify-content-center">
-                            {!! $customers->links() !!}
+                            {!! $products->links() !!}
                           </div>
                         </div>
                         <!-- /.card-body -->

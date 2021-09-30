@@ -2,11 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\Customer;
 use Illuminate\Database\Seeder;
-use Faker\Factory as Faker;
 
-class CustomerSeeder extends Seeder
+class ProductSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,6 +13,6 @@ class CustomerSeeder extends Seeder
      */
     public function run()
     {
-        Customer::factory(100)->create();
+        //
     }
 }

@@ -26,7 +26,7 @@ class StoreController extends Controller
             $customer->save();
   
         }        
-        return redirect()->route('dashboard.customers.index')
+        return redirect()->route('dashboard.customer.index')
             ->with('success',__('Customer has been added.'));
     }
 

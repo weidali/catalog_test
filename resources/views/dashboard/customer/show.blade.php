@@ -12,7 +12,7 @@
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="{{ route('dashboard.main') }}">Dashboard</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('dashboard.customers.index') }}">Customers</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('dashboard.customer.index') }}">Customers</a></li>
                 <li class="breadcrumb-item active">#{{ $customer->id }}</li>
               </ol>
             </div>
@@ -54,18 +54,18 @@
             <!-- /.col -->
             <div class="col-md-9">
               <div class="card">
-                <form action="{{ route('dashboard.customers.delete', $customer->id) }}" method="POST"
-                  onclick="return confirm('Confirm action to delete:')">
+                <form action="{{ route('dashboard.customer.delete', $customer->id) }}" method="POST">
                   @csrf
                   @method('DELETE')
                   <div class="card-footer">
                     <div class="float-right">
-                      <a href="{{ route('dashboard.customers.edit', $customer->id) }}" class="btn btn-default">
+                      <a href="{{ route('dashboard.customer.edit', $customer->id) }}" class="btn btn-default">
                         <i class="fas fa-pencil-alt"></i> Edit</a>
-                      <button class="btn btn-default" type="submit">
+                      <button class="btn btn-default" type="submit"
+                      onclick="return confirm('Confirm action to delete:')">
                         <i class="far fa-trash-alt text-danger"></i> Delete</button>
                     </div>
-                    <a href="{{ route('dashboard.customers.index') }}" class="btn btn-default">
+                    <a href="{{ route('dashboard.customer.index') }}" class="btn btn-default">
                       <i class="fas fa-chevron-left"></i> Back</a>
                   </div>
                 </form>
