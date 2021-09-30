@@ -22,7 +22,12 @@ class ProductFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => $this->faker->word,
+            'sku' => $this->faker->unique()->numberBetween(100000000, 999999999),
+            'description' => $this->faker->text(300),
+            'price' => $this->faker->unique()->numberBetween(1000, 100000000),
+            'image' => 'uploads/products/' . $this->faker->image('storage/app/public/uploads/products',300,300, null, false),
+            'created_at'=> $this->faker->dateTimeBetween('-10 days', now()),
         ];
     }
 }
