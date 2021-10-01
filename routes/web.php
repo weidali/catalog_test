@@ -40,6 +40,15 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Dashboard', 'prefix' => 'd
         Route::patch('/{product}', 'UpdateController')->name('dashboard.product.update');
         Route::delete('/{product}', 'DeleteController')->name('dashboard.product.delete');
     });
+    Route::group(['namespace' => 'Order', 'prefix' => 'orders'], function() {
+        Route::get('/', 'IndexController')->name('dashboard.order.index');
+        Route::get('/create', 'CreateController')->name('dashboard.order.create');
+        Route::post('/create', 'StoreController')->name('dashboard.order.store');
+        Route::get('/{order}', 'ShowController')->name('dashboard.order.show');
+        Route::get('/{order}/edit', 'EditController')->name('dashboard.order.edit');
+        Route::patch('/{order}', 'UpdateController')->name('dashboard.order.update');
+        Route::delete('/{order}', 'DeleteController')->name('dashboard.order.delete');
+    });
 });
 
 Auth::routes();

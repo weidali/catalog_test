@@ -101,41 +101,57 @@
                   </div>
                 </div><!-- /.card-body -->
               </div><!-- /.card -->
-              
-              <dvi class="card">
-                <div class="card-body">
-                  <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                    <div class="row">
-                      <div class="col-sm-12">
-                        <table id="example2" class="table table-bordered table-hover dataTable dtr-inline" role="grid" aria-describedby="example2_info">
-                          <tbody>
-                            <tr role="row">
-                              <th>Id</th>
-                              <th>Full Name</th>
-                              <th>Phone Number</th>
-                              <th>Email</th>
-                              <th>Photo</th>
-                            </tr>
-                            <tr class="odd">
-                              <td>{{ $customer->id }}</td>
-                              <td>{{ $customer->name }}</td>
-                              <td>{{ $customer->phone }}</td>
-                              <td>{{ $customer->email }}</td>
-                              <td>
-                                  <div class="user-block">
-                                    <img class="attachment-img"  src="{{ asset('storage/uploads/customers/'.$customer->photo)}}" alt="{{ $customer->name }}_Ava">
-                                  </div>
-                              </td>
-                            </tr>    
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                </div>
-                <!-- /.card-body -->
-              </div>
             </div>
             <!-- /.col -->
+            @if($customer->orders->isEmpty())
+              <div class="col-12">
+                <dvi class="card">
+                  <div class="card-header">
+                    <h3 class="card-title">@lang('There are not orders yet')</h3>
+                  </div>
+                </div>
+              </div>
+            @else
+              @foreach ($customer->orders as $order)
+              <div class="col-12">
+                <dvi class="card">
+                  <div class="card-header">
+                    <h3 class="card-title">Order #{{ $loop->index + 1 }}<small> Created at: {{ $order->created_at }}</small></h3>
+                  </div>
+                  <div class="card-body">
+                    <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <table id="example2" class="table table-bordered table-hover dataTable dtr-inline" role="grid" aria-describedby="example2_info">
+                            <tbody>
+                              <tr role="row">
+                                <th>Product</th>
+                                <th>SKU</th>
+                                <th>Price</th>
+                                <th>Image</th>
+                              </tr>
+                              @foreach ($order->products as $product)
+                                <tr class="odd">
+                                  <td>{{ $product->name }}</td>
+                                  <td>{{ $product->sku }}</td>
+                                  <td>${{ number_format($product->price/100, 2) }}</td>
+                                  <td>
+                                      <div class="user-block">
+                                        <img class="attachment-img"  src="{{ asset('storage/' . $product->image)}}" alt="{{ $product->name }}_Ava">
+                                      </div>
+                                  </td>
+                                </tr>    
+                              @endforeach
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                  </div>
+                  <!-- /.card-body -->
+                </div>
+              </div>
+              @endforeach
+            @endif
           </div>
           <!-- /.row -->
         </div><!-- /.container-fluid -->

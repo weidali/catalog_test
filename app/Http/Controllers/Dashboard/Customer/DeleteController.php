@@ -14,7 +14,7 @@ class DeleteController extends Controller
     {
         $customer->delete();
         return redirect()->route('dashboard.customer.index')
-            ->with('delete',__('Customer has been deleted.'));
+            ->with('delete', __('Customer has been deleted.'));
     }
 
 }

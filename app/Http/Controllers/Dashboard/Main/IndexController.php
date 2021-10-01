@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Dashboard\Main;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Customer;
+use App\Models\Order;
 use App\Models\Product;
 
-use function PHPUnit\Framework\countOf;
 
 class IndexController extends Controller
 {
@@ -30,7 +30,9 @@ class IndexController extends Controller
     {
         $customersCount = Customer::count();
         $productsCount = Product::count();
+        $ordersCount = Order::count();
+        // dd($ordersCount);
         
-        return view('dashboard.main.index', compact('customersCount', 'productsCount'));
+        return view('dashboard.main.index', compact('customersCount', 'productsCount', 'ordersCount'));
     }
 }

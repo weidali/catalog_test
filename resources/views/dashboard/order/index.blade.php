@@ -1,4 +1,5 @@
 @extends('layouts.app')
+
 @section('content')
   <div class="container-fluid">
       <div class="content-header">
@@ -10,7 +11,7 @@
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                   <li class="breadcrumb-item"><a href="{{ route('dashboard.main') }}">Dashboard</a></li>
-                  <li class="breadcrumb-item active">Customers</li>
+                  <li class="breadcrumb-item active">Orders</li>
                 </ol>
               </div><!-- /.col -->
             </div><!-- /.row -->
@@ -37,8 +38,7 @@
               @endif
               <div class="card">
                 <div class="card-header">
-                  <h3 class="card-title">Customers</h3>
-                  <a href="{{ route('dashboard.customer.create') }}" class="btn btn-primary float-right"><i class="fas fa-plus"></i> New Cusromer</a>
+                  <h3 class="card-title">Orders</h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -49,31 +49,18 @@
                           <thead>
                             <tr role="row">
                                 <th>Id</th>
-                                <th>Full Name</th>
-                                <th>Phone Number</th>
-                                <th>Email</th>
-                                <th>Photo</th>
+                                <th>Customer Name</th>
                                 <th>Created</th>
                                 <th>Updated</th>
                             </tr>
                           </thead>
                           <tbody>
-                            @foreach ($customers as $customer)
-                              <tr onclick="window.location='{{ route('dashboard.customer.show', [$customer->id]) }}'">
-                                <td>{{ $customer->id }}</td>
-                                <td>{{ $customer->name }}</td>
-                                <td>{{ $customer->phone }}</td>
-                                <td>{{ $customer->email }}</td>
-                                <td>
-                                  @if ( $customer->photo )
-                                    <div class="user-block">
-                                      <img class="attachment-img" src="{{ asset('storage/uploads/customers/'.$customer->photo)}}" alt="{{ $customer->name }}_Ava">
-                                    </div>
-                                  @endif
-                                    
-                                </td>
-                                <td>{{ $customer->created_at }}</td>
-                                <td>{{ $customer->updated_at }}</td>
+                            @foreach ($orders as $order)
+                              <tr onclick="window.location='{{ route('dashboard.order.show', [$order->id]) }}'">
+                                <td>{{ $order->id }}</td>
+                                <td>{{ $order->customer->name }}</td>
+                                <td>{{ $order->created_at }}</td>
+                                <td>{{ $order->updated_at }}</td>
                               </tr>    
                             @endforeach
                           </tbody>
@@ -86,7 +73,7 @@
                         <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
                           {{-- Pagination --}}
                           <div class="d-flex justify-content-center">
-                            {!! $customers->links() !!}
+                            {!! $orders->links() !!}
                           </div>
                         </div>
                         <!-- /.card-body -->
